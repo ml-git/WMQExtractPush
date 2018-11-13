@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.jms.Message;
 import javax.jms.TextMessage;
 
-@Configuration
+@Component
 @PropertySource("classpath:application.properties")
 public class RestTemplatePush {
 

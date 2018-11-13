@@ -2,6 +2,7 @@ package com.connector.qq;
 
 import javax.jms.MessageListener;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +31,9 @@ public class JMSAltConfig {
     private String topic;
     @Value("${servers.mq.timeout}")
     private long timeout;
+
+    @Autowired
+    private QQListener qqListener;
 
     @Bean
     public MQTopicConnectionFactory mqTopicConnectionFactory() {
@@ -67,7 +71,7 @@ public class JMSAltConfig {
 
     @Bean
     public SimpleMessageListenerContainer queueContainer(MQQueueConnectionFactory mqQueueConnectionFactory) {
-        MessageListener listener = new QQListener();
+        MessageListener listener = qqListener;
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(mqQueueConnectionFactory);
         container.setDestinationName(queue);
@@ -78,7 +82,7 @@ public class JMSAltConfig {
 
     //@Bean
     public SimpleMessageListenerContainer topicContainer(MQTopicConnectionFactory mqTopicConnectionFactory) {
-        MessageListener listener = new QQListener();
+        MessageListener listener = qqListener;
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(mqTopicConnectionFactory);
         container.setDestinationName(topic);
