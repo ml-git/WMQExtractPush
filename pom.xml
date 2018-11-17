@@ -52,7 +52,6 @@
 
 
         <!-- Camel -->
-
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core</artifactId>
@@ -73,27 +72,16 @@
             <artifactId>camel-spring</artifactId>
             <version>${camel.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-camel -->
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-camel</artifactId>
-            <version>5.5.0</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/com.ibm/com.ibm.mq -->
         <dependency>
-            <groupId>com.ibm</groupId>
-            <artifactId>com.ibm.mq</artifactId>
-            <version>5.3.07</version>
+            <groupId>com.ibm.mq</groupId>
+            <artifactId>mq-jms-spring-boot-starter</artifactId>
+            <version>2.0.9</version>
         </dependency>
         <dependency>
-            <groupId>com.ibm</groupId>
-            <artifactId>com.ibm.mq</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/com.ibm.mq.allclient.jar</systemPath>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
         </dependency>
-
-
     </dependencies>
 
     <build>
@@ -118,13 +106,13 @@
             <!--</plugin>-->
 
 
-
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
                     <configuration>
                         <fork>true</fork>
                         <mainClass>com.connector.qq.MainApp</mainClass>
+                        <executable>true</executable>
                     </configuration>
                     <executions>
                         <execution>
